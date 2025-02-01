@@ -11,6 +11,17 @@ Simple utility to debloat Windows in a few clicks.
 
 Made for Windows 10/11.
 
+## What does Talon do?
+Talon does a few things to debloat your Windows installation.
+
+- Removes unwanted applications from your taskbar and start menu
+- Installs your favoruite browser
+- Apply debloating tweaks using
+  - https://github.com/ChrisTitusTech/winutil
+  - https://github.com/Raphire/Win11Debloat
+- Move taskbar icons to left
+- Remove the searchbar on your taskbar
+
 ## Installation
 See [Releases](https://github.com/ravendevteam/talon/releases). Download the latest version for Windows.
 
