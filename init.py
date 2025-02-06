@@ -13,7 +13,7 @@ import debloat_windows
 import raven_software_install
 import browser_install
 
-LOG_FILE = "talon.txt"
+LOG_FILE = "talon.log"
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.DEBUG,

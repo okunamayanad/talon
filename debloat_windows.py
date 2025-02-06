@@ -10,7 +10,7 @@ import threading
 import time
 import logging
 
-LOG_FILE = "talon.txt"
+LOG_FILE = "talon.log"
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
