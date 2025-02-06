@@ -14,6 +14,10 @@ import raven_software_install
 import browser_install
 
 LOG_FILE = "talon.log"
+if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > 0:
+    with open(LOG_FILE, "a") as f:
+        f.write("\n")
+
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.DEBUG,
