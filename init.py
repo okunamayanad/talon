@@ -115,14 +115,14 @@ def main():
         try:
             if install_raven:
                 logging.info("Installing Raven software...")
-                pages.raven_app.raven_software_install.raven_software_install.main()
+                pages.raven_app.raven_software_install.main()
                 logging.info("Raven software installed.")
         except Exception as e:
             logging.error(f"Error during Raven software installation: {e}")
 
         try:
             logging.info(f"Installing {selected_browser} browser...")
-            pages.browser_install.browser_install.browser_install.install_browser(selected_browser)
+            pages.browser_install.browser_install.install_browser(selected_browser)
             logging.info(f"{selected_browser} browser installation complete.")
         except Exception as e:
             logging.error(f"Error during browser installation: {e}")
