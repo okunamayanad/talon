@@ -66,8 +66,7 @@ class RavenAppScreen(QWidget):
             base_path = sys._MEIPASS
         else:
             base_path = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(base_path, "src/additional_software_offer.png")
-        pixmap = QPixmap(image_path)
+        pixmap = QPixmap("src/additional_software_offer.png")
         scaled_pixmap = pixmap.scaledToWidth(int(self.width() * 0.6), Qt.SmoothTransformation)
         image_label.setPixmap(scaled_pixmap)
         image_label.setAlignment(Qt.AlignCenter)
@@ -91,9 +90,8 @@ class RavenAppScreen(QWidget):
                 base_path = sys._MEIPASS
             else:
                 base_path = os.path.dirname(os.path.abspath(__file__))
-            font_path = os.path.join(base_path, "src/ChakraPetch-Regular.ttf")
 
-            font_id = QFontDatabase.addApplicationFont(font_path)
+            font_id = QFontDatabase.addApplicationFont("src/ChakraPetch-Regular.ttf")
             if font_id == -1:
                 print("Failed to load font.")
             else:
