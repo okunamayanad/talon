@@ -5,13 +5,19 @@ import subprocess
 import threading
 import logging
 from PyQt5.QtWidgets import QApplication
-from browser_select_screen import BrowserSelectScreen
-from defender_check import DefenderCheck
-from raven_app_screen import RavenAppScreen
-from install_screen import InstallScreen
+
+from pages.defender_check.defender_check import DefenderCheck
+
+from pages.browser_install.browser_select_screen import BrowserSelectScreen
+import pages.browser_install.browser_install
+
+from pages.raven_app.raven_app_screen import RavenAppScreen
+import pages.raven_app.raven_software_install
+
 import debloat_windows
-import raven_software_install
-import browser_install
+
+from pages.loading.install_screen import InstallScreen
+
 
 LOG_FILE = "talon.txt"
 logging.basicConfig(
