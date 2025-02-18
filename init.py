@@ -82,15 +82,22 @@ def restart_as_admin():
 def main():
     logging.info("Starting Talon Installer")
     logging.info(f"Talon Version: {TALON_VERSION}")
+    
     windows_info = get_windows_info()
     if windows_info:
         logging.info(f"Windows Version: {windows_info['product_name']}")
         logging.info(f"Build Number: {windows_info['build']}")
         logging.info(f"Display Version: {windows_info['display_version']}")
     app = QApplication(sys.argv)
+
+
+    # Checks before starting the installation
+    # Check admin rights 
     if not is_running_as_admin():
         logging.warning("Program is not running as admin. Restarting with admin rights...")
         restart_as_admin()
+
+    # Check if defender is disabled
     try:
         logging.info("Starting Defender check...")
         defender_check_window = DefenderCheck()
@@ -102,12 +109,18 @@ def main():
     except Exception as e:
         logging.error(f"Error during Defender check: {e}")
     selected_browser = None
+
+    # Check if the system is Windows 11
     try:
-        logging.info("Running Windows 11 and fresh install check...")
+        logging.info("Running Windows 11 check...")
         windows_check.check_system()
         logging.info("System check passed.")
     except Exception as e:
         logging.error(f"System check failed: {e}")
+
+
+    # User preferences and selections
+    # Ask the user for a preferred browser
     try:
         logging.info("Displaying browser selection screen...")
         browser_select_screen = BrowserSelectScreen()
@@ -121,6 +134,8 @@ def main():
     except Exception as e:
         logging.error(f"Error during browser selection: {e}")
     install_raven = None
+    
+    # Ask the user if they want to install additional Raven software
     try:
         logging.info("Displaying Raven app installation screen...")
         raven_app_screen = RavenAppScreen()
@@ -133,6 +148,10 @@ def main():
         raven_app_screen.close()
     except Exception as e:
         logging.error(f"Error during Raven app installation decision: {e}")
+
+
+    # Installation process
+    # Display the installation screen
     try:
         logging.info("Displaying installation screen...")
         install_screen = InstallScreen()
