@@ -18,6 +18,7 @@ import time
 from PyQt5.QtCore import QTimer
 import platform
 import winreg
+import requests
 
 """ Establish the version of Talon """
 TALON_VERSION = "1.1.3"
@@ -117,6 +118,22 @@ def main():
         logging.info("System check passed.")
     except Exception as e:
         logging.error(f"System check failed: {e}")
+
+    # Check if Talon is up to date
+    try:
+        logging.info("Checking if Talon is up to date...")
+        url = "https://api.github.com/repos/YourOrg/Talon/releases/latest"
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        latest = response.json().get("tag_name", "")
+        if latest and latest != f"v{TALON_VERSION}":
+            logging.warning(f"New version available: {latest}")
+            windows_check.show_popup("Talon Update Available",
+                                        f"An update for Talon is available. Please download the latest version from the <a href='{response.json().get('html_url', '')}'>GitHub page</a>.", is_error=False)
+        else:
+            logging.info("Already on the latest version.")
+    except Exception as e:
+        logging.error(f"Error checking for Talon updates: {e}")
 
 
     # User preferences and selections
